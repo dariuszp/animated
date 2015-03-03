@@ -13,4 +13,4 @@
 
 
     global.AnimatedAnimationError = AnimatedAnimationError;
-})(window);
+}(window));

@@ -41,7 +41,8 @@
     };
 
 
-    Animated.prototype.addAnimation = function(animation) {
+    Animated.prototype.addAnimation = function (animation) {
+        console.log(global);
         if (!(animation instanceof global.AnimatedAnimation)) {
             throw new global.AnimatedAnimationError('Invalid animation. Parameter must be an instanceof Animation');
         }
@@ -53,4 +54,4 @@
 
 
     global.Animated = Animated;
-})(window);
+}(window));

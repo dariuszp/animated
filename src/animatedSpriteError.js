@@ -13,4 +13,4 @@
 
 
     global.AnimatedSpriteError = AnimatedSpriteError;
-})(window);
+}(window));

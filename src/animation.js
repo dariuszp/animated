@@ -14,11 +14,14 @@
         this.name = name;
         this.sprite = sprite;
 
-        for(var index in options) {
-            if (!this.hasOwnProperty(index) || typeof this[index] === 'function') {
-                throw new global.AnimatedAnimationError('Invalid option: "' + String(index) + '"');
+        var index;
+        for (index in options) {
+            if (options.hasOwnProperty(index)) {
+                if (!this.hasOwnProperty(index) || typeof this[index] === 'function') {
+                    throw new global.AnimatedAnimationError('Invalid option: "' + String(index) + '"');
+                }
+                this[index] = options[index];
             }
-            this[index] = options[index];
         }
     }
 
@@ -35,4 +38,4 @@
 
 
     global.AnimatedAnimation = AnimatedAnimation;
-})(window);
+}(window));

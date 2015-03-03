@@ -2,7 +2,8 @@
 
 var gulp    = require('gulp'),
     uglify  = require('gulp-uglify'),
-    rename  = require('gulp-rename');
+    rename  = require('gulp-rename'),
+    concat  = require('gulp-concat');
 
 gulp.task('default', function () {
 
@@ -11,10 +12,12 @@ gulp.task('default', function () {
         __dirname + '/src/animation.js',
         __dirname + '/src/animated.js'
     ])
-        .pipe(rename('animated.js'))
+        .pipe(concat('animated.js'))
+        .pipe(gulp.dest(__dirname))
         .pipe(uglify({
-            mangle: false
+            mangle: true
         }))
+        .pipe(rename('animated.min.js'))
         .pipe(gulp.dest(__dirname));
 
 });
