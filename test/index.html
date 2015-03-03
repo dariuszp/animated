@@ -6,17 +6,33 @@
 </head>
 <body>
 
-    <canvas id="demo"></canvas>
+    <canvas id="demo" width="512" height="512"></canvas>
 
     <script src="../animated.js"></script>
     <script type="text/javascript">
         'use strict';
 
-        var male = new Animated();
-        male.addSprite('male', 'test/zombie.png');
-        male.addAnimation(male.createAnimation('male', 'male', {
-
+        var zombie = new Animated();
+        zombie.addSprite('zombie_0', 'test/zombie.png');
+        zombie.addAnimation(zombie.createAnimation('walk.south', 'zombie_0', {
+            x: 0,
+            y: 768,
+            frameWidth: 128,
+            frameHeight: 128,
+            frames: 4
         }));
+
+        var canvas = document.getElementById('demo'),
+            ctx = canvas.getContext('2d');
+
+        function render(ts) {
+            requestAnimationFrame( render );
+
+            ctx.clearRect(0, 0, 512, 512);
+            zombie.canvasDrawFrame(ctx, 'walk.south', Math.floor(ts / 1000), 192, 192);
+        }
+
+        render();
     </script>
 
 </body>

@@ -49,7 +49,7 @@
         var index;
         for (index in options) {
             if (options.hasOwnProperty(index)) {
-                if (!this.hasOwnProperty(index) || typeof this[index] === 'function') {
+                if (this[index] === undefined || typeof this[index] === 'function') {
                     throw new global.AnimatedAnimationError('Invalid option: "' + String(index) + '"');
                 }
                 this[index] = options[index];
@@ -59,7 +59,11 @@
 
 
     AnimatedAnimation.prototype.name                = '';
-    AnimatedAnimation.prototype.sprite              = undefined;
+    AnimatedAnimation.prototype.sprite              = null;
+    AnimatedAnimation.prototype.x                   = 0;
+    AnimatedAnimation.prototype.y                   = 0;
+    AnimatedAnimation.prototype.frameWidth          = 32;
+    AnimatedAnimation.prototype.frameHeight         = 64;
     AnimatedAnimation.prototype.frames              = 1;
     AnimatedAnimation.prototype.vertivalOrientation = false;
     AnimatedAnimation.prototype.runBackward         = false;
@@ -122,6 +126,30 @@
         this.animations[animation.name] = animation;
 
         return this;
+    };
+
+
+    Animated.prototype.canvasDrawFrame = function (ctx, animationName, frame, x, y, width, height) {
+        var animation = this.animations[animationName];
+        if (!animation) {
+            throw new Error('Invalid animation name');
+        }
+        x = parseInt(x, 10);
+        y = parseInt(y, 10);
+        frame = parseInt(frame, 10) || 1;
+        width = parseInt(width, 10) || animation.frameWidth;
+        height = parseInt(height, 10) || animation.frameHeight;
+
+        frame = frame % (animation.frames);
+
+        var sx = animation.x,
+            sy = animation.y;
+        if (animation.vertivalOrientation) {
+            sy = animation.y + (frame * animation.frameHeight);
+        } else {
+            sx += animation.x + (frame * animation.frameWidth);
+        }
+        ctx.drawImage(animation.sprite, sx, sy, animation.frameWidth, animation.frameHeight, x, y, width, height);
     };
 
 

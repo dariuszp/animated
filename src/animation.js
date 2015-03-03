@@ -28,6 +28,10 @@
 
     AnimatedAnimation.prototype.name                = '';
     AnimatedAnimation.prototype.sprite              = undefined;
+    AnimatedAnimation.prototype.x                   = 0;
+    AnimatedAnimation.prototype.y                   = 0;
+    AnimatedAnimation.prototype.frameWidth          = 32;
+    AnimatedAnimation.prototype.frameHeight         = 64;
     AnimatedAnimation.prototype.frames              = 1;
     AnimatedAnimation.prototype.vertivalOrientation = false;
     AnimatedAnimation.prototype.runBackward         = false;
