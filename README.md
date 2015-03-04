@@ -1,7 +1,36 @@
 # animated
 
-> I have no right to img/f2malesprite.gif. 
-> This sprite is downloaded from http://www.spriters-resource.com/pc_computer/fallout2/sheet/54196/ and was oryginally taken from Fallout 2.
-> Gane created by Black Isle Studios and released by Interplay.
-> Image is used for learning purpose only and was used because I'm big fan of Fallout series ;-). 
+zombie.png is taken from http://opengameart.org/content/zombie-sprites
 
+## Requirements dev
+
+* nodejs
+* gulp
+
+## Dev installation
+
+Install nodejs modules
+
+```
+npm install
+```
+
+Install gulp
+
+```
+npm install -g gulp
+```
+
+Run gulp task when You change anything in src
+
+```
+gulp
+```
+
+If you have PHP, start serwer using:
+
+```
+php -S localhost:3000
+```
+
+and navigate in browser to **http://localhost:3000/test**.
