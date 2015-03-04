@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+#demo {
+    display: block;
+    margin: 10px auto;
+    border: 1px solid #222;
+    background-color: #ccc;
+}

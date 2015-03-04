@@ -1,7 +1,7 @@
 'use strict';
 
 var zombie = new Animated();
-zombie.addSprite('zombie_0', 'test/zombie.png');
+zombie.addSprite('zombie_0', 'page/zombie.png');
 
 zombie.addAnimation(zombie.createAnimation('walk.left', 'zombie_0', {
     x: 512,

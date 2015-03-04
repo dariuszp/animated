@@ -52,6 +52,9 @@
                 if (this[index] === undefined || typeof this[index] === 'function') {
                     throw new global.AnimatedAnimationError('Invalid option: "' + String(index) + '"');
                 }
+                if (options[index] === undefined) {
+                    options[index] = null;
+                }
                 this[index] = options[index];
             }
         }

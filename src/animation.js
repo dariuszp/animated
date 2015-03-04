@@ -17,8 +17,11 @@
         var index;
         for (index in options) {
             if (options.hasOwnProperty(index)) {
-                if (!this.hasOwnProperty(index) || typeof this[index] === 'function') {
+                if (this[index] === undefined || typeof this[index] === 'function') {
                     throw new global.AnimatedAnimationError('Invalid option: "' + String(index) + '"');
+                }
+                if (options[index] === undefined) {
+                    options[index] = null;
                 }
                 this[index] = options[index];
             }
@@ -27,7 +30,7 @@
 
 
     AnimatedAnimation.prototype.name                = '';
-    AnimatedAnimation.prototype.sprite              = undefined;
+    AnimatedAnimation.prototype.sprite              = null;
     AnimatedAnimation.prototype.x                   = 0;
     AnimatedAnimation.prototype.y                   = 0;
     AnimatedAnimation.prototype.frameWidth          = 32;

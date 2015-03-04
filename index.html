@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated DEMO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+    <link rel="stylesheet" href="page/style.css"/>
+</head>
+<body>
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Animated</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="http://github.com/dariuszp">&laquo; go back</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <canvas id="demo" width="256" height="256"></canvas>
+
+            <p>
+                <strong>index.html</strong>
+            </p>
+<pre><code class="html">&lt;canvas id=&quot;demo&quot; width=&quot;256&quot; height=&quot;256&quot;&gt;&lt;/canvas&gt;</code></pre>
+
+            <strong>script.js</strong>
+<pre><code class="js">'use strict';
+
+var canvas = document.getElementById('demo'),
+    ctx = canvas.getContext('2d');
+
+var zombie = new Animated();
+zombie.addSprite('zombie_0', 'zombie.png');
+
+zombie.addAnimation(zombie.createAnimation('walk.right', 'zombie_0', {
+    x: 512,
+    y: 512,
+    frameWidth: 128,
+    frameHeight: 128,
+    frames: 8
+}));
+
+function render(ts) {
+    requestAnimationFrame( render );
+    ctx.clearRect(0, 0, 265, 256);
+
+    // draw
+    zombie.canvasDrawFrame(ctx, 'walk.right', Math.floor(ts/100), 64, 64);
+    // end draw
+}
+
+render();</code></pre>
+        </div>
+    </div>
+</div>
+
+<script src="dist/animated.js"></script>
+<script src="page/zombie.js"></script>
+<script>
+    'use strict';
+
+    var canvas = document.getElementById('demo'),
+        ctx = canvas.getContext('2d');
+
+    function render(ts) {
+        requestAnimationFrame( render );
+        ctx.clearRect(0, 0, 265, 256);
+
+        // draw
+        zombie.canvasDrawFrame(ctx, 'walk.right', Math.floor(ts/100), 64, 64);
+        // end draw
+    }
+
+    render();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/javascript.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+</body>
+</html>

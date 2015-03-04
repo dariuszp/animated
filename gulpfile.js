@@ -13,11 +13,11 @@ gulp.task('default', function () {
         __dirname + '/src/animated.js'
     ])
         .pipe(concat('animated.js'))
-        .pipe(gulp.dest(__dirname))
+        .pipe(gulp.dest(__dirname + '/dist'))
         .pipe(uglify({
             mangle: true
         }))
         .pipe(rename('animated.min.js'))
-        .pipe(gulp.dest(__dirname));
+        .pipe(gulp.dest(__dirname + '/dist'));
 
 });

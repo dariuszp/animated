@@ -33,4 +33,6 @@ If you have PHP, start serwer using:
 php -S localhost:3000
 ```
 
-and navigate in browser to **http://localhost:3000/test**.
+and navigate in browser to **http://localhost:3000**.
+
+You can download animated.js or animated.min.js from **/dist** directory. Src is for development only.
