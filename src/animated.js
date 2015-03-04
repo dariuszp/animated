@@ -52,6 +52,15 @@
     };
 
 
+    Animated.prototype.removeAnimation = function (animationName) {
+        if (!this.animations[animationName]) {
+            return false;
+        }
+        delete this.animations[animationName];
+        return true;
+    };
+
+
     Animated.prototype.canvasDrawFrame = function (ctx, animationName, frame, x, y, width, height) {
         var animation = this.animations[animationName];
         if (!animation) {
@@ -64,6 +73,9 @@
         height = parseInt(height, 10) || animation.frameHeight;
 
         frame = frame % animation.frames;
+        if (animation.runBackward) {
+            frame = animation.frames - (frame + 1);
+        }
 
         var sx = animation.x,
             sy = animation.y;
