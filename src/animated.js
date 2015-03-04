@@ -42,7 +42,6 @@
 
 
     Animated.prototype.addAnimation = function (animation) {
-        console.log(global);
         if (!(animation instanceof global.AnimatedAnimation)) {
             throw new global.AnimatedAnimationError('Invalid animation. Parameter must be an instanceof Animation');
         }
@@ -50,6 +49,30 @@
         this.animations[animation.name] = animation;
 
         return this;
+    };
+
+
+    Animated.prototype.canvasDrawFrame = function (ctx, animationName, frame, x, y, width, height) {
+        var animation = this.animations[animationName];
+        if (!animation) {
+            throw new Error('Invalid animation name');
+        }
+        x = parseInt(x, 10);
+        y = parseInt(y, 10);
+        frame = parseInt(frame, 10) || 1;
+        width = parseInt(width, 10) || animation.frameWidth;
+        height = parseInt(height, 10) || animation.frameHeight;
+
+        frame = frame % animation.frames;
+
+        var sx = animation.x,
+            sy = animation.y;
+        if (animation.vertivalOrientation) {
+            sy = animation.y + (frame * animation.frameHeight);
+        } else {
+            sx = animation.x + (frame * animation.frameWidth);
+        }
+        ctx.drawImage(animation.sprite, sx, sy, animation.frameWidth, animation.frameHeight, x, y, width, height);
     };
 
 

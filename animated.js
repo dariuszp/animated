@@ -140,14 +140,14 @@
         width = parseInt(width, 10) || animation.frameWidth;
         height = parseInt(height, 10) || animation.frameHeight;
 
-        frame = frame % (animation.frames);
+        frame = frame % animation.frames;
 
         var sx = animation.x,
             sy = animation.y;
         if (animation.vertivalOrientation) {
             sy = animation.y + (frame * animation.frameHeight);
         } else {
-            sx += animation.x + (frame * animation.frameWidth);
+            sx = animation.x + (frame * animation.frameWidth);
         }
         ctx.drawImage(animation.sprite, sx, sy, animation.frameWidth, animation.frameHeight, x, y, width, height);
     };
